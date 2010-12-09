@@ -1,0 +1,25 @@
+<%= form_for(@ag) do |f| %>
+  <% if @ag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ag.errors.count, "error") %> prohibited this ag from being saved:</h2>
+
+      <ul>
+      <% @ag.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :area_id %><br />
+    <%= f.text_field :area_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

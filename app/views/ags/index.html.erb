@@ -1,0 +1,25 @@
+<h1>Listing ags</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Area</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ags.each do |ag| %>
+  <tr>
+    <td><%= ag.name %></td>
+    <td><%= ag.area_id %></td>
+    <td><%= link_to 'Show', ag %></td>
+    <td><%= link_to 'Edit', edit_ag_path(ag) %></td>
+    <td><%= link_to 'Destroy', ag, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ag', new_ag_path %>

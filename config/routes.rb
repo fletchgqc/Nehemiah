@@ -1,4 +1,16 @@
 Registrations::Application.routes.draw do
+  resources :registrations
+
+  resources :events
+
+  resources :seasons
+
+  resources :ags
+
+  resources :areas
+
+  root :to => "home#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

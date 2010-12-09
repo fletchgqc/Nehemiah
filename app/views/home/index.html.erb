@@ -1,0 +1,23 @@
+<h1>Hello, Rails!</h1>
+<h2>Administer</h2>
+<ul>
+	<li><%= link_to 'Areas', areas_path %></li>
+	<li><%= link_to 'AGs', ags_path %></li>
+	<li><%= link_to 'Seasons', seasons_path %></li>
+	<li><%= link_to 'Events', events_path %></li>
+	<li><%= link_to 'Registrations', registrations_path %></li>
+</ul>
+<%= link_to 'New AG Registration', 'registrations/mnew' %>
+<%= form_tag(registrations_path, :method => "get") do %>
+
+  <%= select_tag 'ag', options_from_collection_for_select(Ag.all, :id, :name) %>
+  <% if false %>
+
+  <%= select_tag(:ag_id) %>
+  <%= label_tag(:q, "Search for:") %>
+
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+  <% end %>
+<% end %>
+
