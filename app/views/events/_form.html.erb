@@ -12,16 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
     <%= f.label :year %><br />
-    <%= f.text_field :year %>
+    <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
+      :prefix => 'event[year]', :discard_type => true) %>
   </div>
   <div class="field">
     <%= f.label :season_id %><br />
-    <%= f.text_field :season_id %>
+    <%= f.collection_select :season_id, Season.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :location %> (use obvious names like "Spain", not vague city names like "Cuenca")<br />
+    <%= f.text_field :location %>
   </div>
   <div class="actions">
     <%= f.submit %>

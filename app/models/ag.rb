@@ -3,4 +3,8 @@ class Ag < ActiveRecord::Base
 	
 	belongs_to :area
 	has_many :registrations
+	
+	def to_s
+		name
+	end
 end

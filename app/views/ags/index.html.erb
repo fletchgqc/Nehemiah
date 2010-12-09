@@ -12,7 +12,7 @@
 <% @ags.each do |ag| %>
   <tr>
     <td><%= ag.name %></td>
-    <td><%= ag.area_id %></td>
+    <td><%= ag.area %></td>
     <td><%= link_to 'Show', ag %></td>
     <td><%= link_to 'Edit', edit_ag_path(ag) %></td>
     <td><%= link_to 'Destroy', ag, :confirm => 'Are you sure?', :method => :delete %></td>
