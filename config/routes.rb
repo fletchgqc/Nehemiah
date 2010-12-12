@@ -1,4 +1,6 @@
 Registrations::Application.routes.draw do
+  get "registrations/agshow"
+  post "registrations/agcreate"
   resources :registrations
 
   resources :events

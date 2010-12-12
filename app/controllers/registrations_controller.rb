@@ -80,4 +80,58 @@ class RegistrationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def agshow
+    @ag = Ag.find params[:ag_id]
+    @year = params[:year]
+    @season = Season.find params[:season_id]
+    @registrations = Registration.where(:ag_id => @ag.id).
+        joins(:event).
+        where(:events => {:year => @year, :season_id => @season.id})
+    @events = Event.where(:year => @year, :season_id => @season.id)
+    @new_registrations = []
+    @errors = 0
+
+    blank_lines = @registrations.length == 0 ? 3 : 1
+      # new registration for this AG, give them a few vacant lines
+    blank_lines.times do
+        @new_registrations << Registration.new
+    end
+
+  end
+
+  def agcreate
+    @errors = 0
+    @new_registrations = []
+    for registration_hash in params[:new_registrations] do
+      unless (registration_hash[:name].empty?)
+        # is not blank line
+        registration = Registration.new(registration_hash)
+        registration.ag_id = params[:ag_id]
+        @new_registrations << registration
+        unless registration.valid?
+          @errors+=1
+        end
+      end
+    end
+
+    if @errors == 0
+      for registration in @new_registrations do
+        registration.save!
+      end
+      flash[:notice] = 'Registration successful.'
+      redirect_to(:action => 'agshow', 
+        :ag_id => params[:ag_id], :year => params[:year], :season_id => params[:season_id])
+    else
+      @ag = Ag.find params[:ag_id]
+      @year = params[:year]
+      @season = Season.find params[:season_id]
+      @registrations = Registration.where(:ag_id => @ag.id).
+        joins(:event).
+        where(:events => {:year => @year, :season_id => @season.id})
+      @events = Event.where(:year => @year, :season_id => @season.id)
+      render :action => "agshow"
+    end
+  end
+  
 end
