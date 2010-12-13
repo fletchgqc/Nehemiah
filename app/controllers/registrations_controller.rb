@@ -35,6 +35,7 @@ class RegistrationsController < ApplicationController
   # GET /registrations/1/edit
   def edit
     @registration = Registration.find(params[:id])
+    @events = Event.where(:year => params[:year], :season_id => params[:season_id])
   end
 
   # POST /registrations
@@ -54,18 +55,18 @@ class RegistrationsController < ApplicationController
   end
 
   # PUT /registrations/1
-  # PUT /registrations/1.xml
   def update
     @registration = Registration.find(params[:id])
 
-    respond_to do |format|
-      if @registration.update_attributes(params[:registration])
-        format.html { redirect_to(@registration, :notice => 'Registration was successfully updated.') }
-        format.xml  { head :ok }
+    if @registration.update_attributes(params[:registration])
+      unless @registration.event.blank?
+        flash[:notice] = 'Registration was successfully updated.'
+        redirect_to registrations_eventshow_path(:event_id => @registration.event_id)
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @registration.errors, :status => :unprocessable_entity }
+        redirect_to :home
       end
+    else
+      render :action => "edit"
     end
   end
 
@@ -82,9 +83,7 @@ class RegistrationsController < ApplicationController
   end
   
   def agshow
-    @ag = Ag.find params[:ag_id]
-    @year = params[:year]
-    @season = Season.find params[:season_id]
+    set_agshow_vars
     @registrations = Registration.where(:ag_id => @ag.id).
         joins(:event).
         where(:events => {:year => @year, :season_id => @season.id})
@@ -92,12 +91,22 @@ class RegistrationsController < ApplicationController
     @new_registrations = []
     @errors = 0
 
-    blank_lines = @registrations.length == 0 ? 3 : 1
+    blank_lines = @registrations.length == 0 ? 5 : 1
       # new registration for this AG, give them a few vacant lines
     blank_lines.times do
         @new_registrations << Registration.new
     end
-
+  end
+  
+  def eventshow
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+      @events = Event.where(:year => @event.year, :season_id => @event.season_id)
+    else
+      @events = Event.where(:year => params[:year], :season_id => params[:season_id])
+      @event = @events.first
+    end
+    @registrations = Registration.where(:event_id => @event.id)
   end
 
   def agcreate
@@ -123,15 +132,19 @@ class RegistrationsController < ApplicationController
       redirect_to(:action => 'agshow', 
         :ag_id => params[:ag_id], :year => params[:year], :season_id => params[:season_id])
     else
-      @ag = Ag.find params[:ag_id]
-      @year = params[:year]
-      @season = Season.find params[:season_id]
+      set_agshow_vars
       @registrations = Registration.where(:ag_id => @ag.id).
         joins(:event).
         where(:events => {:year => @year, :season_id => @season.id})
       @events = Event.where(:year => @year, :season_id => @season.id)
       render :action => "agshow"
     end
+  end
+  
+  def set_agshow_vars
+    @ag = Ag.find params[:ag_id]
+    @year = params[:year]
+    @season = Season.find params[:season_id]
   end
   
 end

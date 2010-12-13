@@ -13,10 +13,16 @@
 			<%= reg_form.text_field :name %>
 		</td>
 		<td>
-			<%= reg_form.text_field :comments %>
+			<%= reg_form.select :age, Registration::AGES %>
+		</td>
+		<td>
+			<%= reg_form.select :sex, Registration::SEXES %>
 		</td>
 		<td>
 			<%= reg_form.collection_select :event_id, @events, :id, :location %>
+		</td>
+		<td>
+			<%= reg_form.text_field :comments %>
 		</td>
 		<td>
 			<%= link_to_function 'remove', "$(this).up('tr').remove()" %>

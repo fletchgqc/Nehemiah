@@ -42,14 +42,17 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
+    if Event.where(:season_id => @event.season_id, :year => @event.year).length == 0
+      # No 'None' option exists
+      none = Event.new(params[:event])
+      none.location = 'None'
+      none.save
+    end
+    
+    if @event.save
+      redirect_to(@event, :notice => 'Event was successfully created.')
+    else
+      render :action => "new"
     end
   end
 

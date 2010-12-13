@@ -10,19 +10,33 @@
 <%= link_to 'New AG Registration', 'registrations/mnew' %>
 <div id="agreg">
   <h3>Create or View AG Registration</h3>
-<%= form_tag('registrations/agshow', :method => "get") do %>
-  <%= label_tag 'ag_id', 'AG' %><br />
-  <%= select_tag 'ag_id', options_from_collection_for_select(Ag.all, :id, :name) %>
-  <div class="field">
-    <%= label_tag :season_id %><br />
-    <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= label_tag :year %><br />
-    <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
-      :prefix => 'year', :discard_type => true) %>
-  </div>
-  <input type="submit" value="Go">
+  <%= form_tag('registrations/agshow', :method => "get") do %>
+    <%= label_tag 'ag_id', 'AG' %><br />
+    <%= select_tag 'ag_id', options_from_collection_for_select(Ag.all, :id, :name) %>
+    <div class="field">
+      <%= label_tag :season_id %><br />
+      <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
+    </div>
+    <div class="field">
+      <%= label_tag :year %><br />
+      <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
+        :prefix => 'year', :discard_type => true) %>
+    </div>
+    <input type="submit" value="Go">
+  <% end %>
 </div>
-<% end %>
-
+<div id="eventview">
+  <h3>View Event Registrations</h3>
+  <%= form_tag('registrations/eventshow', :method => "get") do %>
+    <div class="field">
+      <%= label_tag :season_id %><br />
+      <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
+    </div>
+    <div class="field">
+      <%= label_tag :year %><br />
+      <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
+        :prefix => 'year', :discard_type => true) %>
+    </div>
+    <input type="submit" value="Go">
+  <% end %>
+</div>

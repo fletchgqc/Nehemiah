@@ -1,30 +1,7 @@
 <h1><%= @ag.name %> AG Registration for <%= @season.name %> <%= @year %></h1>
 <p id="notice"><%= notice %></p>
-<% if @registrations.length != 0 %>
-	<table>
-	  <tr>
-		<th>Name</th>
-		<th>Comments</th>
-		<th>Event</th>
-		<th>Ag</th>
-		<th></th>
-		<th></th>
-		<th></th>
-	  </tr>
-	
-	<% @registrations.each do |registration| %>
-	  <tr>
-		<td><%= registration.name %></td>
-		<td><%= registration.comments %></td>
-		<td><%= registration.event_id %></td>
-		<td><%= registration.ag %></td>
-		<td><%= link_to 'Show', registration %></td>
-		<td><%= link_to 'Edit', edit_registration_path(registration) %></td>
-		<td><%= link_to 'Destroy', registration, :confirm => 'Are you sure?', :method => :delete %></td>
-	  </tr>
-	<% end %>
-	</table>
-<% end %>
+<%= render :partial => 'list' %>
+
 <%= form_for :registration, :url => { :action => "agcreate" } do |f| %>
 	<%= hidden_field_tag(:ag_id, @ag.id) %>
 	<%= hidden_field_tag(:season_id, @season.id) %>
@@ -41,8 +18,10 @@
   <table id="newregistrations">
 	<tr>
 		<th><%= f.label :name %></th>
-		<th><%= f.label :comments %></th>
+		<th><%= f.label :age %></th>
+		<th><%= f.label :sex %></th>
 		<th><%= f.label :event %></th>
+		<th><%= f.label :comments %></th>
 		<th>Remove</th>
 	</tr>
 	<%= render :partial => 'registration', :collection => @new_registrations %>

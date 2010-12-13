@@ -1,0 +1,31 @@
+<% if @registrations.length != 0 %>
+	<table>
+	  <tr>
+		<th>Area</th>
+		<th>Ag</th>
+		<th>Name</th>
+		<th>Age</th>
+		<th>Sex</th>
+		<th>Event</th>
+		<th>Comments</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	  </tr>
+
+	<% @registrations.each do |registration| %>
+	  <tr>
+		<td><%= registration.ag.area.name %></td>
+		<td><%= registration.ag %></td>
+		<td><%= registration.name %></td>
+		<td><%= registration.age %></td>
+		<td><%= registration.sex %></td>
+		<td><%= registration.event.location %></td>
+		<td><%= registration.comments %></td>
+		<td><%= link_to 'Show', registration %></td>
+		<td><%= link_to 'Edit', edit_registration_path(registration, :year => @events.first.year, :season_id => @events.first.season_id) %></td>
+		<td><%= link_to 'Destroy', registration, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% end %>

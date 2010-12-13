@@ -3,8 +3,8 @@
 <table>
   <tr>
     <th>Location</th>
-    <th>Year</th>
     <th>Season</th>
+    <th>Year</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +13,8 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.location %></td>
-    <td><%= event.year %></td>
     <td><%= event.season %></td>
+    <td><%= event.year %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>

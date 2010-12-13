@@ -11,22 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :comments %><br />
-    <%= f.text_field :comments %>
-  </div>
-  <div class="field">
-    <%= f.label :event_id %><br />
-    <%= f.text_field :event_id %>
-  </div>
-  <div class="field">
-    <%= f.label :ag_id %><br />
-    <%= f.text_field :ag_id %>
-  </div>
+  <table>
+    <tr>
+      <th><%= f.label :name %></th>
+      <th><%= f.label :age %></th>
+      <th><%= f.label :sex %></th>
+      <th><%= f.label :event %></th>
+      <th><%= f.label :comments %></th>
+    </tr>
+    <tr>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+      <td>
+        <%= f.select :age, Registration::AGES %>
+      </td>
+      <td>
+        <%= f.select :sex, Registration::SEXES %>
+      </td>
+      <td>
+        <%= f.collection_select :event_id, @events, :id, :location %>
+      </td>
+      <td>
+        <%= f.text_field :comments %>
+      </td>
+    </tr>
+  </table>
   <div class="actions">
     <%= f.submit %>
   </div>

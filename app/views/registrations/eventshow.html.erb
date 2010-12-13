@@ -1,0 +1,16 @@
+<% @events.each do |event|
+	if @event.id == event.id %>
+		<%= event.location %>
+	<% else %>
+		<%= link_to event.location, :event_id => event.id %> 
+	<% end %>
+<% end %>
+
+<h1><%= @event.location %>, <%= @event.season.name %> <%= @event.year %></h1>
+<p id="notice"><%= notice %></p>
+<div id="eventsummary"><%= pluralize(@registrations.size, 'registration') %>,
+	<%= pluralize(@registrations.select {|r| r.age == Registration::AGES['Adult'] }.size, 'adult') %>,
+	<%= pluralize(@registrations.select {|r| r.age != Registration::AGES['Adult'] }.size, 'child') %>
+</div>
+<h2>Registrations</h2>
+<%= render :partial => 'list' %>
