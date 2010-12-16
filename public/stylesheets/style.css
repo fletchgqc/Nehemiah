@@ -1,0 +1,157 @@
+html {
+	font-size: 100%;
+}
+
+body {
+	background: #fff url(/images/page-background.gif) repeat-x top;
+	font-family: "Trebuchet MS", verdana, arial, sans-serif;
+	padding: 0;
+	margin: 10px;
+	font-size: 62.5%;
+}
+
+#page {
+  width: 950px; 
+  margin: 0 auto;
+  font-size: 1.6em;
+  line-height: 1.8em;
+}
+
+#nehemiah {
+  display: block;
+  margin: -10px auto 0;
+}
+
+#nav ul {
+  margin: 22px auto 15px auto;
+  padding: 0;
+  list-style: none;
+  font-size: 1.2em;  
+}
+
+#nav li {
+  list-style-type: none;
+  display: inline;
+  margin-right: 20px;
+}
+
+#nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+#nav a:hover, #nav a.active {
+  text-decoration: underline;
+}
+
+img {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+
+.image-left {
+  float: left;
+  margin: 15px 20px 15px 0;
+}
+
+.image-right {
+  float: right;
+  margin: 15px 0 15px 15px;
+}
+
+h1 {
+  margin-top: 1.3em;
+  font-size: 1.8em;
+}
+
+h2 {
+  margin-top: 1.2em;
+}
+
+table {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  border-collapse: collapse;
+  border: 2px solid #333;
+}
+
+tbody {
+  border: 0 none;
+}
+
+th {
+  text-align: left;
+}
+
+tr {
+  vertical-align: top;
+}
+
+td, th {
+  padding: 0.1em 0.5em;
+  border: 1px solid #ccc;
+}
+
+.selectbox {
+  width: 380px;
+  margin: 20px auto 35px auto;
+  border: 1px solid #aaaaff;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.selectbox select {
+  margin-right: 3px;
+}
+
+#eventlinks {
+  margin: 30px 0 -12px 0;
+}
+#eventlinks span {
+  margin-left: 10px;
+}
+
+/* Styles from scaffolding */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+#error {
+  color: red;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

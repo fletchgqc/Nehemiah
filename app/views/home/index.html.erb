@@ -1,42 +1,22 @@
-<h1>Hello, Rails!</h1>
-<h2>Administer</h2>
-<ul>
-	<li><%= link_to 'Areas', areas_path %></li>
-	<li><%= link_to 'AGs', ags_path %></li>
-	<li><%= link_to 'Seasons', seasons_path %></li>
-	<li><%= link_to 'Events', events_path %></li>
-	<li><%= link_to 'Registrations', registrations_path %></li>
-</ul>
-<%= link_to 'New AG Registration', 'registrations/mnew' %>
-<div id="agreg">
+<h1>Welcome to Nehemiah</h1>
+<p id="notice"><%= notice %></p>
+<p>This application allows you to administer inscriptions for Assembly events, like GVs, AGMs and MBPs.</p>
+<div class="selectbox">
   <h3>Create or View AG Registration</h3>
   <%= form_tag('registrations/agshow', :method => "get") do %>
-    <%= label_tag 'ag_id', 'AG' %><br />
     <%= select_tag 'ag_id', options_from_collection_for_select(Ag.all, :id, :name) %>
-    <div class="field">
-      <%= label_tag :season_id %><br />
-      <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
-    </div>
-    <div class="field">
-      <%= label_tag :year %><br />
-      <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
-        :prefix => 'year', :discard_type => true) %>
-    </div>
+    <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
+    <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
+      :prefix => 'year', :discard_type => true) %>
     <input type="submit" value="Go">
   <% end %>
 </div>
-<div id="eventview">
+<div class="selectbox">
   <h3>View Event Registrations</h3>
   <%= form_tag('registrations/eventshow', :method => "get") do %>
-    <div class="field">
-      <%= label_tag :season_id %><br />
-      <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
-    </div>
-    <div class="field">
-      <%= label_tag :year %><br />
-      <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
+    <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
+    <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
         :prefix => 'year', :discard_type => true) %>
-    </div>
     <input type="submit" value="Go">
   <% end %>
 </div>

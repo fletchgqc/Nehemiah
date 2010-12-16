@@ -104,6 +104,12 @@ class RegistrationsController < ApplicationController
       @events = Event.where(:year => @event.year, :season_id => @event.season_id)
     else
       @events = Event.where(:year => params[:year], :season_id => params[:season_id])
+      if @events.empty?
+        puts 'it was empty'
+        flash[:notice] = 'The selected period has no events so far. Please ask the governors to create the events.'
+        redirect_to(:controller => 'home') and return
+        puts 'it was empty 2'
+      end
       @event = @events.first
     end
     @registrations = Registration.where(:event_id => @event.id)

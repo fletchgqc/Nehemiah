@@ -1,10 +1,14 @@
-<% @events.each do |event|
-	if @event.id == event.id %>
-		<%= event.location %>
-	<% else %>
-		<%= link_to event.location, :event_id => event.id %> 
+<div id="eventlinks"><%= @event.season.name %> <%= @event.year %>:
+	<% @events.each do |event| %>
+		<span>
+			<% if @event.id == event.id %>
+				<%= event.location %>
+			<% else %>
+				<%= link_to event.location, :event_id => event.id %> 
+			<% end %>
+		</span>
 	<% end %>
-<% end %>
+</div>
 
 <h1><%= @event.location %>, <%= @event.season.name %> <%= @event.year %></h1>
 <p id="notice"><%= notice %></p>
@@ -14,3 +18,4 @@
 </div>
 <h2>Registrations</h2>
 <%= render :partial => 'list' %>
+<p><a href="#">Export to Excel</a> (doesn't work yet).</p>

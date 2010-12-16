@@ -2,6 +2,9 @@ Registrations::Application.routes.draw do
   get "registrations/agshow"
   get "registrations/eventshow"
   post "registrations/agcreate"
+  
+  get "home/admin"
+  
   resources :registrations
 
   resources :events

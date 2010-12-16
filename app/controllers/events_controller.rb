@@ -2,11 +2,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @events }
+    if params[:year].empty? || params[:season_id].empty?
+      @events = Event.all
+    else
+      @events = Event.where(:year => params[:year], :season_id => params[:season_id])
     end
   end
 

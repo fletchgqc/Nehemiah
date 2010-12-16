@@ -1,0 +1,21 @@
+<h1>Nehemiah Adminisration</h1>
+<p>Only governors are able to access this page.</p>
+<h2>Basic Settings:</h2>
+<ul>
+	<li><%= link_to 'Areas', areas_path %></li>
+	<li><%= link_to 'AGs', ags_path %></li>
+	<li><%= link_to 'Seasons', seasons_path %></li>
+</ul>
+
+<div class="selectbox">
+  <h2>Administer Events</h2>
+  <p>Create and modify GVs etc for:</p>
+  <%= form_tag(events_path, :method => "get") do %>
+    <%= select_tag 'season_id', options_from_collection_for_select(Season.all, :id, :name) %>
+    <%= select_year(Date.today, :start_year => Date.today.year, :end_year => 2.years.from_now.year,
+        :prefix => 'year', :discard_type => true) %>
+    <input type="submit" value="Go">
+  <% end %>
+</div>
+
+
