@@ -13,7 +13,7 @@
 			<%= reg_form.text_field :name %>
 		</td>
 		<td>
-			<%= reg_form.select :age, Registration::AGES %>
+			<%= reg_form.select :age, Registration::AGES.sort {|a,b| b[1] <=> a[1] } %>
 		</td>
 		<td>
 			<%= reg_form.select :sex, Registration::SEXES %>

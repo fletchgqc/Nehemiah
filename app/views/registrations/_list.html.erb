@@ -18,7 +18,7 @@
 		<td><%= registration.ag.area.name %></td>
 		<td><%= registration.ag %></td>
 		<td><%= registration.name %></td>
-		<td><%= registration.age %></td>
+		<td><%= Registration::AGES.index registration.age  %></td>
 		<td><%= registration.sex %></td>
 		<td><%= registration.event.location %></td>
 		<td><%= registration.comments %></td>
